@@ -46,4 +46,4 @@ Docker Hub URL: https://hub.docker.com/r/razi94/hello-world-flask
 ## Notes
 
 - You may have to open port 5000 on your host to access the application.
-- feature/readme branch testing
+- dev branch changes
