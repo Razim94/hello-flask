@@ -1,0 +1,17 @@
+{{- if .Values.cronjob.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: flask-cron
+spec:
+  schedule: "{{ .Values.cronjob.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: {{ .Values.cronjob.name }}
+              image: "{{ .Values.cronjob.image }}"
+              command: {{ toYaml .Values.cronjob.command | nindent 14 }}
+{{- end }}

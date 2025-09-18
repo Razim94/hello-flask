@@ -1,0 +1,40 @@
+# image
+image:
+  repository: razi94/hello-world-flask
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+# replicas & ports
+replicaCount: 2
+service:
+  type: NodePort
+  port: 5000            # Service port
+  targetPort: 5000      # Container port
+  nodePort: null        # set to 31254 if you want a fixed NodePort
+
+# configmap data (from flask-config)
+config:
+  data:
+    APP_MESSAGE: "Testing ConfigMap data"
+    LOG_LEVEL: "INFO"
+
+# secret data (from flask-secret)
+secret:
+  data:
+    SECRET_KEY: "razi-secret-test"
+
+# HPA
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
+
+# CronJob
+cronjob:
+  enabled: true
+  schedule: "* 8-17 * * 0-5"
+  command: ["sh","-c","date -u '+%F %T UTC :: Flask-cron test'"]
+  image: "busybox"
+  name: "echo"
+
