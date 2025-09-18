@@ -72,6 +72,7 @@ This phase deploys the Dockerized Flask app to a Kubernetes cluster with yaml fi
 - The Deployment reads env vars from `flask-config` (ConfigMap) and `flask-secret` (Secret).
 - Health probes are already configured in `flask-deployment.yaml`.
 - The Service is type **NodePort** so you can reach the app from the host (VM IP + NodePort).
+- Another change from dev branch
 
 ## Cleanup
 
