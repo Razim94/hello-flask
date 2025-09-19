@@ -6,5 +6,11 @@ app = Flask(__name__)
 def hello():
     return "Hello, World!"
 
+@app.route('/status')
+def get_status():
+    """Return a simple health status message."""
+    return {"status": "ok"}
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
