@@ -1,9 +1,11 @@
+"""Basic Flask hello world"""
 from flask import Flask
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
+    """Returns hello world"""
     return "Hello, World!"
 
 if __name__ == '__main__':
