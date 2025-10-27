@@ -2,6 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: flask-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   APP_MESSAGE: "Testing ConfigMap data"
   LOG_LEVEL: "INFO"
