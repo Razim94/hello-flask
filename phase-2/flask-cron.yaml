@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: flask-cron
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   schedule: "*/10 8-17 * * 0-5"
   jobTemplate:
