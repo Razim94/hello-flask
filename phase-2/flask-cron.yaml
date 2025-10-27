@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: flask-cron
 spec:
-  schedule: "* 8-17 * * 0-5"
+  schedule: "*/10 8-17 * * 0-5"
   jobTemplate:
     spec:
       template:
