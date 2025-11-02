@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-alerts
+  namespace: monitoring
+data:
+  alerts.yaml: |
+    groups:
+    - name: quakewatch-alerts
+      interval: 30s
+      rules:
+      - alert: QuakeWatchHighCPU
+        expr: sum(rate(container_cpu_usage_seconds_total{namespace="quakewatch-helm",pod=~"quakewatch.*"}[5m])) by (pod) > 0.8
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "QuakeWatch pod {{ $labels.pod }} high CPU usage"
+          description: "CPU usage is above 80% for 2 minutes"
+      
+      - alert: QuakeWatchPodDown
+        expr: kube_pod_status_phase{namespace="quakewatch-helm",pod=~"quakewatch.*",phase!="Running"} == 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "QuakeWatch pod {{ $labels.pod }} is down"
+          description: "Pod is not in Running state"
