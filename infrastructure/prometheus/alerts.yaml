@@ -4,8 +4,7 @@ metadata:
   name: quakewatch-alerts
   namespace: monitoring
   labels:
-    prometheus: kube-prometheus
-    role: alert-rules
+    release: prometheus
 spec:
   groups:
   - name: quakewatch-alerts
