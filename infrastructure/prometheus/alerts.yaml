@@ -20,10 +20,10 @@ spec:
         description: "CPU usage is above 80% for 2 minutes"
     
     - alert: QuakeWatchPodDown
-      expr: kube_pod_status_phase{namespace="quakewatch-helm",pod=~"quakewatch.*",phase!="Running"} == 1
-      for: 1m
+      expr: sum(kube_pod_status_phase{namespace="quakewatch-helm",pod=~"quakewatch.*",phase=~"Pending|Unknown|Failed"}) > 0
+      for: 30s
       labels:
         severity: critical
       annotations:
-        summary: "QuakeWatch pod {{ $labels.pod }} is down"
-        description: "Pod is not in Running state"
+        summary: "QuakeWatch pod is down"
+        description: "Pod has been in non-running state for 30 seconds"
