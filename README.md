@@ -10,7 +10,7 @@ QuakeWatch is a Flask app that monitors earthquake data. It's deployed on Kubern
 ## Tech Stack
 
 - **App**: Flask earthquake dashboard
-- **Image**: `razi94/quakewatch:1.1.1` on Docker Hub
+- **Image**: `razi94/quakewatch:v1.1.1` on Docker Hub
 - **Cluster**: k3s
 - **Deployment**: ArgoCD
 - **Monitoring**: Prometheus + Grafana
